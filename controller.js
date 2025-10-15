@@ -1,0 +1,31 @@
+app.controller('MainCtrl',function($scope,studentService)
+{
+$scope.students=[];
+$scope.newStudent={};
+function load()
+{
+    studentService.getAll().then(function(res)
+    {
+    $scope.students=res.data;
+    });
+}
+$scope.addStudent=function()
+{
+    studentService.add($scope.newStudent).then(function(res)
+    {
+    $scope.students.push(res.data);
+    $scope.newStudent={};
+    });
+}
+$scope.deleteStudent=function(id)
+{
+    studentService.delete(id).then(function()
+    {
+    $scope.students=$scope.students.filter(function(s)
+    {
+return s._id!==id
+    });
+    });
+}
+load();
+});

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app="studentApp">
+    <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+        <title>DASHBOARD</title>
+    </head>
+    <body ng-controller="MainCtrl">
+        <form ng-submit="addStudent()">
+            Name:<input type="text" ng-model="newStudent.name" required>
+            Age:<input type="number" ng-model="newStudent.age" required>
+            <button type="submit">add</button>
+        </form>
+        <div>
+            <h2>stdent kist</h2>
+            <div ng-repeat="s in students">
+                <p>{{s.name}}-{{s.age}}</p>
+                <button ng-click="deleteStudent(s._id)">delete</button>
+            </div>
+        </div>
+        <script src="app.js"></script>
+        <script src="controller.js"></script>
+    </body>
+</html>
